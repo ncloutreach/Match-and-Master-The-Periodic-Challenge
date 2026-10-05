@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Over</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+
+    <style>
+        body {
+            background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);
+            font-family: 'Fredoka', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            color: #333;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .portal-scale {
+            width: 100%;
+            max-width: 1100px;
+            /* prevents stretching */
+            margin: 0 auto;
+            transform-origin: top center;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.85);
+            padding: 40px 50px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            max-width: 500px;
+            width: 90%;
+            animation: fadeIn 0.6s ease-in;
+        }
+
+        h1 {
+            font-family: 'Baloo 2', sans-serif;
+            color: #d94fc6;
+            font-size: 2.5em;
+            text-shadow: 2px 3px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        img {
+            width: 500px;
+            max-width: 100%;
+            height: auto;
+            margin: 20px 0;
+            border-radius: 20px;
+        }
+
+        #scoreDisplay {
+            font-size: 2em;
+            color: #1e88e5;
+            font-family: 'Press Start 2P', cursive;
+            margin: 10px 0;
+        }
+
+        .stars {
+            font-size: 2.5em;
+            margin: 15px 0;
+            color: #fdd835;
+        }
+
+        .message {
+            font-size: 1.2em;
+            color: #444;
+            margin-bottom: 25px;
+            font-style: italic;
+            font-weight: 600;
+        }
+
+        button {
+            background: linear-gradient(to right, #ff6fd8, #69c0ff);
+            color: white;
+            font-size: 1em;
+            font-weight: bold;
+            padding: 12px 28px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+            background: linear-gradient(to right, #69c0ff, #ff6fd8);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 📱 Mobile (max-width: 600px) */
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+                background: linear-gradient(135deg, #fbc2eb 20%, #a6c1ee 80%);
+                justify-content: flex-start;
+                padding-top: 40px;
+            }
+
+            .container {
+                padding: 25px 20px;
+                border-radius: 15px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+                width: 95%;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            #scoreDisplay {
+                font-size: 1.2em;
+            }
+
+            .stars {
+                font-size: 1.8em;
+            }
+
+            .message {
+                font-size: 1em;
+                margin-bottom: 20px;
+            }
+
+            button {
+                font-size: 0.9em;
+                padding: 10px 22px;
+                border-radius: 20px;
+            }
+        }
+
+        /* 💻 Tablet (max-width: 1024px) */
+        @media (max-width: 1024px) and (min-width: 601px) {
+            body {
+                background: linear-gradient(135deg, #fbc2eb 10%, #a6c1ee 90%);
+            }
+
+            .container {
+                max-width: 600px;
+                padding: 35px 30px;
+            }
+
+            h1 {
+                font-size: 2.2em;
+            }
+
+            #scoreDisplay {
+                font-size: 1.6em;
+            }
+
+            .stars {
+                font-size: 2em;
+            }
+
+            .message {
+                font-size: 1.1em;
+            }
+
+            button {
+                font-size: 1em;
+                padding: 12px 26px;
+            }
+        }
+
+        /* --- Landscape Warning for Phones --- */
+        @media screen and (orientation: landscape) and (max-width: 1024px) {
+            body::before {
+                content: "Please rotate your device to portrait mode 📱";
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100vw;
+                height: 100vh;
+                background: rgba(0, 0, 0, 1);
+                color: #fff;
+                font-size: 1.4rem;
+                font-family: 'Comfortaa', sans-serif;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                z-index: 99999;
+                padding: 20px;
+                box-sizing: border-box;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="portal-scale">
+        <div class="container">
+            <h1>Game Over</h1>
+            <img src="Back.jpg" alt="Game Over">
+            <div id="scoreDisplay">Score: 0</div>
+            <div class="stars" id="starRating">⭐⭐⭐</div>
+            <div class="message" id="motivationalMessage">Well done!</div>
+            <button id="playAgainBtn">Play Again</button>
+        </div>
+    </div>
+
+    <script>
+        // Read score and message from URL
+        const params = new URLSearchParams(window.location.search);
+        const score = parseInt(params.get("score")) || 0;
+        const message = decodeURIComponent(params.get("message") || "");
+
+        document.getElementById("scoreDisplay").textContent = `Score: ${score}`;
+        document.getElementById("motivationalMessage").textContent = message;
+
+        // Determine star rating based on score
+        let stars = "";
+        if (score <= 6) stars = "⭐";
+        else if (score <= 10) stars = "⭐⭐";
+        else if (score <= 14) stars = "⭐⭐⭐";
+        else if (score <= 17) stars = "⭐⭐⭐⭐";
+        else stars = "⭐⭐⭐⭐⭐";
+
+        document.getElementById("starRating").textContent = stars;
+
+        document.getElementById("playAgainBtn").addEventListener("click", () => {
+            window.location.href = "start.html";
+        });
+    </script>
+</body>
+
+</html>
